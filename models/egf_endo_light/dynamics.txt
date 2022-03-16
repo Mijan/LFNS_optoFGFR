@@ -1,0 +1,23 @@
+Parameters:
+r_12, egf_input, r_23,  r_21, r_31, k_12, K_12, k_21, K_21, k_34, K_34, k_43, K_43,k_56, K_56, k_65, K_65, k_78, K_78, k_87, K_87, k_82, K_82, k_93, k_910, K_910, k_109, K_109, s_12, s_21, light_input, modphas
+
+Species:
+EgfR, EgfR_endo, EgfR_star, Ktr, Ktr_star, Phos, Kin, Ras, Ras_star, Raf, Raf_star, Mek, Mek_star, Erk, Erk_star, NfbRaf, NfbRaf_star
+
+Reactions:
+EgfR        --> EgfR_star                Variables: r_12, egf_input                                Propensity: r_12 * egf_input * EgfR
+EgfR_star   --> EgfR_endo               Variables: r_23                                             Propensity: #ma
+EgfR_star   --> EgfR                    Variables: r_21                                             Propensity: #ma
+EgfR_endo    --> EgfR                   Variables: r_31                                             Propensity: #ma
+Ras         --> Ras_star                Variables: k_12, K_12                                       Propensity: k_12 * EgfR_star * Ras / (K_12 + Ras) + light_input *  Ras / (K_12 + Ras)
+Ras_star    --> Ras                     Variables: k_21, K_21                                       Propensity: modphas*k_21 * Ras_star / (K_21 + Ras_star)
+Raf         --> Raf_star                Variables: k_34, K_34                                       Propensity: k_34 * Ras_star * Raf / (K_34 + Raf)
+Raf_star    --> Raf                     Variables: k_93, k_43, K_43                                 Propensity: modphas*(k_93 * NfbRaf_star + k_43 ) * Raf_star/ (K_43 + Raf_star)
+Mek         --> Mek_star                Variables: k_56, K_56                                       Propensity: k_56 * Raf_star * Mek / (K_56 + Mek)
+Mek_star    --> Mek                     Variables: k_65, K_65                                       Propensity: modphas*k_65 * Mek_star / (K_65 + Mek_star)
+Erk         --> Erk_star                Variables: k_78, K_78                                       Propensity: k_78 * Mek_star * Erk / (K_78 + Erk)
+Erk_star    --> Erk                     Variables: k_87, K_87                                       Propensity: modphas*k_87 * Erk_star / (K_87 + Erk_star)
+Ktr         --> Ktr_star                Variables: k_82, K_82, s_12                                 Propensity: k_82 * Erk_star * Ktr / (K_82  + Ktr) + s_12 * Kin * Ktr
+Ktr_star    --> Ktr                     Variables: s_21                                             Propensity: s_21 * Phos* Ktr_star
+NfbRaf         --> NfbRaf_star          Variables: k_910, K_910                                     Propensity: k_910 * Erk_star * NfbRaf / (K_910 + NfbRaf)
+NfbRaf_star    --> NfbRaf               Variables: k_109, K_109                                     Propensity: k_109 * NfbRaf_star / (K_109 + NfbRaf_star)

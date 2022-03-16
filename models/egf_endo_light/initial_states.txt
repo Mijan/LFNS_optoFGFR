@@ -1,0 +1,22 @@
+Parameters:
+ktr_init
+
+Initial Values:
+EgfR:   1
+EgfR_star:  0
+EgfR_endo:  0
+Kin:    1
+Phos:   1
+Ras:    1
+Ras_star:   0
+Raf:    1
+Raf_star:   0
+Mek:    1
+Mek_star:   0
+Erk:    1
+Erk_star:   0
+Ktr:    1- ktr_init
+Ktr_star: ktr_init
+NfbRaf:    1
+NfbRaf_star: 0
+

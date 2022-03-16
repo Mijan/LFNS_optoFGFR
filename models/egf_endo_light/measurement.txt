@@ -1,0 +1,14 @@
+Species:
+Ktr_star, Ktr
+
+Parameters:
+sigma
+
+Random numbers:
+r_1 = Normal(0, 1)
+
+Measurement:
+measure  = (Ktr_star / Ktr) 
+
+Loglikelihood:
+measure: - (measure - (Ktr_star / Ktr))^2 / (2*sigma^2) - log(sigma *sqrt(2 * _pi))

@@ -1,0 +1,120 @@
+<model>
+	<type>DET</type>
+    <model>./dynamics.txt</model>
+	<initialvalue>./initial_states.txt</initialvalue>
+	<measurement>./measurement.txt</measurement>
+</model>
+<parameters>
+	<scales>
+        <parameters scale="linear">ktr_init</parameters>
+    </scales>
+    <bounds>
+        <bound>
+            <parameters>ktr_init</parameters>
+            <lowerbounds>0</lowerbounds>
+            <upperbounds>1</upperbounds>
+        </bound>
+        <bound>
+            <parameters>sigma</parameters>
+            <lowerbounds>1e-5</lowerbounds>
+            <upperbounds>1</upperbounds>
+        </bound>
+        <bound>
+            <parameters>r_12, egf_input, r_23,  r_21, r_31, k_12, K_12, k_21, K_21, k_34, K_34,k_93, k_43, K_43,k_56, K_56, k_65, K_65, k_78, K_78, k_87, K_87, k_82, K_82, s_12, s_21, k_910, K_910, k_109, K_109</parameters>
+            <lowerbounds>1e-5</lowerbounds>
+            <upperbounds>1e5</upperbounds>
+        </bound>
+    </bounds>
+    <fixedparams>
+        <parameters>egf_input light_input modphas</parameters>
+        <values>0 0 1</values>
+    </fixedparams>
+</parameters>
+<data>
+	<dataset>
+		<experiments>egf_light light</experiments>
+		<datafile>../data/modeling_data/egf_light/100mlegf_light_nooscl.txt ../data/modeling_data/egf_light/0mlegf_light_nooscl.txt</datafile>
+		<timefile>../data/modeling_data/egf_light/times.txt</timefile>
+    </dataset>
+</data>
+<inputs>
+    <input>
+        <experiments>egf100_light100 egf100_light200 egf100</experiments>
+        <period>10000</period>
+        <strength>100</strength>
+        <duration>10000</duration>
+        <numpulses>1</numpulses>
+        <inputparam>egf_input</inputparam>
+        <startingtime>5</startingtime>
+    </input>
+    <input>
+        <experiments>egf1_light100 egf1_light200 egf1</experiments>
+        <period>10000</period>
+        <strength>1</strength>
+        <duration>10000</duration>
+        <numpulses>1</numpulses>
+        <inputparam>egf_input</inputparam>
+        <startingtime>5</startingtime>
+    </input>
+    <input>
+        <experiments>egf100_light100 egf1_light100 light100</experiments>
+        <period>10000</period>
+        <strength>100</strength>
+        <duration>30</duration>
+        <numpulses>1</numpulses>
+        <inputparam>light_input</inputparam>
+        <startingtime>25 25 5</startingtime>
+    </input>
+    <input>
+        <experiments>egf100_light200 egf1_light200 light200</experiments>
+        <period>10000</period>
+        <strength>200</strength>
+        <duration>30</duration>
+        <numpulses>1</numpulses>
+        <inputparam>light_input</inputparam>
+        <startingtime>25 25 5</startingtime>
+    </input>
+    <input>
+        <experiments>egf_light</experiments>
+        <period>10000</period>
+        <strength>100</strength>
+        <duration>10000</duration>
+        <numpulses>1</numpulses>
+        <inputparam>egf_input</inputparam>
+        <startingtime>5</startingtime>
+    </input>
+    <input>
+        <experiments>egf_light light</experiments>
+        <period>10000</period>
+        <strength>100 100</strength>
+        <duration>30</duration>
+        <numpulses>1</numpulses>
+        <inputparam>light_input</inputparam>
+        <startingtime>25</startingtime>
+    </input>
+</inputs>
+<ODESettings>
+    <minstepsize>1e-15</minstepsize>
+    <reltol>1e-10</reltol>
+    <abstol>1e-12</abstol>
+    <maxerrorfails>1000</maxerrorfails>
+    <maxnumsteps>10000</maxnumsteps>
+</ODESettings>
+<Simulation>
+    <experiments>egf100 egf1 light100 light200 egf100_light100 egf100_light200</experiments>
+    <initialtime>0</initialtime>
+    <finaltime>70</finaltime>
+    <interval>0.1</interval>
+    <parameter>0.042 39.3 1.00E+03 0.01 0.0425 1.93E-04 6.00E-04 9.65E-05 0.08 150 6.50E-05 2.01 1.00E+04 1.11 0.012 1.93E-04 6.00E-04 1.93E-04 0.042 39.3 1.00E+03 0.1 0.0425 1.93E-04 6.00E-04 9.65E-05 4.02E-03 8.04E-06 1.13E+04 1.25E-03 3.15E-04 5.90E-06 4.00E-04 2.00E-03 1.93E-03 1.00E-04 1.93E-03 2.08E-04 0.012 50 0.107 9 3.00E+04 9.63E-05</parameter>
+</Simulation>
+<ComputeLikelihood>
+	<modelconfigurations>egf_light light</modelconfigurations>
+	<parameter>0.042 39.3 1.00E+03 0.01 0.0425 1.93E-04 6.00E-04 9.65E-05 0.08 150 6.50E-05 2.01 1.00E+04 1.11 0.012 1.93E-04 6.00E-04 1.93E-04 0.042 39.3 1.00E+03 0.1 0.0425 1.93E-04 6.00E-04 9.65E-05 4.02E-03 8.04E-06 1.13E+04 1.25E-03 3.15E-04 5.90E-06 4.00E-04 2.00E-03 1.93E-03 1.00E-04 1.93E-03 2.08E-04 0.012 50 0.107 9 3.00E+04 9.63E-05</parameter>
+</ComputeLikelihood>
+<LFNS>
+	<experiments>egf_light light</experiments>
+	<N>200</N>
+	<H>1</H>
+    <r>20</r>
+	<tolerance>0.000000001</tolerance>
+</LFNS>
